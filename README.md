@@ -36,53 +36,16 @@ The project structure is based on the official [Scaling your project](https://fl
 ```
 .
 ├── api
-│   ├── helpers
-│   │   ├── __init__.py
-│   │   ├── parsers.py
-│   │   └── password.py
 │   └── v1
-│   │   ├── __init__.py
 │   │   └── resources
-│   │       ├── auth
-│   │       │   ├── __init__.py
-│   │       │   ├── login.py
-│   │       │   └── serializers.py
-│   │       └── contas
-│   │       │   ├── __init__.py
-│   │       │   ├── conta.py
-│   │       │   ├── models.py
-│   │       │   └── serializers.py
 │   │       ├── hello
 │   │       │   ├── __init__.py
 │   │       │   ├── hello.py
-│   │       └── pessoas
-│   │       │   ├── __init__.py
-│   │       │   ├── models.py
-│   │       │   ├── pessoa.py
-│   │       │   └── serializers.py
-│   │       └── tipo_contas
-│   │       │   ├── __init__.py
-│   │       │   ├── models.py
-│   │       │   ├── serializers.py
-│   │       │   └── tipo_conta.py
-│   │       └── tipo_transacoes
-│   │       │   ├── __init__.py
-│   │       │   ├── models.py
-│   │       │   ├── serializers.py
-│   │       │   └── tipo_transacao.py
-│   │       └── transacoes
-│   │       │   ├── __init__.py
-│   │       │   ├── models.py
-│   │       │   ├── serializers.py
-│   │       │   └── transacao.py
 │   │       ├── __init__.py
+│   │   ├── __init__.py
 │   ├── __init__.py
-├── imgs
-│   ├── images files
 ├── .gitignore
-├── AmCom.postman_collection.json
 ├── config.py
-├── keys.json
 ├── Procfile
 ├── README.md
 ├── requirements.txt
@@ -94,19 +57,15 @@ The project structure is based on the official [Scaling your project](https://fl
 ### Folders
 
 * `api` - All the RESTful API implementation is here.
-* `api/helpers` - Useful function/class helpers for all modules.
 * `api/v1` - Resource agroupment for all `v1` [Namespaces](https://flask-restplus.readthedocs.io/en/stable/scaling.html#multiple-namespaces).
 * `api/v1/resources` - All `v1` resources are implemented here.
-* `imgs` - All images files of API project/documentation.
 
 ### Files
 
 * `api/__init__.py` - The Flask Application factory (`create_app()`) and it's configuration are done here. Your [Blueprints](https://flask-restplus.readthedocs.io/en/stable/scaling.html#use-with-blueprints) are registered here.
 * `api/v1/__init__.py` - The Flask RESTPlus API is created here with the versioned Blueprint (e.g `v1`). Your [Namespaces](https://flask-restplus.readthedocs.io/en/stable/scaling.html#multiple-namespaces) are registered here.
 * `.gitignore` - Lists files and directories which should not be added to git repository.
-* `AmCom.postman_collection.json` - File to import in Postman.
 * `config.py` - Config file for envs, global config vars and so on.
-* `keys.json` - Keys for access for Firebase DB.
 * `Procfile` - Configuration of gunicorn (for deploy on Heroku).
 * `README.md` - Instructions and informations of this "challenge".
 * `requirements.txt` - All project dependencies.
