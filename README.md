@@ -67,7 +67,7 @@ The project structure is based on the official [Scaling your project](https://fl
 * `.gitignore` - Lists files and directories which should not be added to git repository.
 * `config.py` - Config file for envs, global config vars and so on.
 * `Procfile` - Configuration of gunicorn (for deploy on Heroku).
-* `README.md` - Instructions and informations of this "challenge".
+* `README.md` - Instructions and informations of this API.
 * `requirements.txt` - All project dependencies.
 * `run.py` - The Application entrypoint.
 * `runtime.py` - Set version of Python for deploy on Heroku.
