@@ -1,5 +1,5 @@
 from flask_restplus import Resource, Namespace
-from .serializers import user, create_user
+from .serializers import user
 from .models import Users
 
 
