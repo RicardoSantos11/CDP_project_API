@@ -36,14 +36,19 @@ The project structure is based on the official [Scaling your project](https://fl
 ```
 .
 ├── api
-│   └── v1
-│   │   └── resources
-│   │       ├── hello
-│   │       │   ├── __init__.py
-│   │       │   ├── hello.py
-│   │       ├── __init__.py
-│   │   ├── __init__.py
-│   ├── __init__.py
+    └── v1
+        └── resources
+            └── hello
+                ├── __init__.py
+                └── hello.py
+            └── users
+                ├── __init__.py
+                ├── models.py
+                ├── serializers.py
+                └── user.py
+            └── __init__.py
+        └── __init__.py
+    └── __init__.py
 ├── .gitignore
 ├── config.py
 ├── Procfile
