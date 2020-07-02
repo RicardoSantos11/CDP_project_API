@@ -15,3 +15,22 @@ class UserList(Resource):
         Get all users
         """
         return Users.get_all_users()
+
+
+@api.route('/id/<string:id>')
+class UserId(Resource):
+
+    @api.marshal_with(user)
+    @api.doc(responses={
+        200: 'OK',
+        404: 'User not found',
+        500: 'Internal Server Error'
+    }, params={'id': 'User ID'})
+    def get(self, id):
+        """
+        Get User by ID
+        """
+        user = Users.get_user(id)
+        if not user:
+            api.abort(404, 'User not found')
+        return user, 200

@@ -20,5 +20,16 @@ class Users:
         return all_users
 
     @staticmethod
+    def get_user(id):
+        user_ref = set_users()
+
+        user = user_ref.find_one({'_id': id})
+        if user:
+            return user
+
+        return None
+
+
+    @staticmethod
     def insert_user(user):
         pass
