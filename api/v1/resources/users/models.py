@@ -31,7 +31,6 @@ class Users:
 
         return None
 
-
     @staticmethod
     def insert_user(user):
         user_ref = set_users()
@@ -52,3 +51,11 @@ class Users:
             return user_json
         except Exception as e:
             return f"An Error Ocurred: {e}"
+
+    @classmethod
+    def delete_user(cls, id):
+        users_ref = set_users()
+
+        if users_ref.delete_one({'_id': id}).deleted_count:
+            return '', 204
+        abort(404, 'User not found')

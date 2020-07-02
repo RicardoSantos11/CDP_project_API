@@ -47,3 +47,14 @@ class UserId(Resource):
         if not user:
             api.abort(404, 'User not found')
         return user, 200
+
+    @api.doc(responses={
+        204: 'No content',
+        404: 'User not found',
+        500: 'Internal Server Error'
+    }, params={'id': 'User ID'})
+    def delete(self, id):
+        """
+        Deletes user by ID
+        """
+        return Users.delete_user(id)
