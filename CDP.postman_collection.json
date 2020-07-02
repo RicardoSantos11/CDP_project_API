@@ -1,0 +1,373 @@
+{
+	"info": {
+		"_postman_id": "583d69e4-5c95-4ac0-9f17-e6f248deb862",
+		"name": "CDP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Web",
+			"item": [
+				{
+					"name": "Hello",
+					"item": [
+						{
+							"name": "Hello API",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://cdpapi.herokuapp.com//api/v1/hello",
+									"protocol": "https",
+									"host": [
+										"cdpapi",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"",
+										"api",
+										"v1",
+										"hello"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "Create User",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Bianca Dutra dos Santos\",\n    \"email\": \"bianca@gmail.com\",\n    \"phone\": \"11999887555\",\n    \"cpf\": \"77788899844\",\n    \"birth_date\": \"14/06/2014\",\n    \"brand\": \"heineiken\",\n    \"source\": \"rock_in_rio\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://cdpapi.herokuapp.com//api/v1/users",
+									"protocol": "https",
+									"host": [
+										"cdpapi",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"",
+										"api",
+										"v1",
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all Users",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://cdpapi.herokuapp.com//api/v1/users",
+									"protocol": "https",
+									"host": [
+										"cdpapi",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"",
+										"api",
+										"v1",
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get User by ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://cdpapi.herokuapp.com/api/v1/users/id/ef9c7f81-f853-41c3-babc-39a05fe45f3c",
+									"protocol": "https",
+									"host": [
+										"cdpapi",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"id",
+										"ef9c7f81-f853-41c3-babc-39a05fe45f3c"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update User by ID",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Bianca Dutra dos Santos 22\",\n    \"email\": \"bianca22@gmail.com\",\n    \"phone\": \"11999887554\",\n    \"cpf\": \"77788899845\",\n    \"birth_date\": \"14/06/2014\",\n    \"brand\": \"heineiken\",\n    \"source\": \"rock_in_rio\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://cdpapi.herokuapp.com/api/v1/users/id/ef9c7f81-f853-41c3-babc-39a05fe45f3c",
+									"protocol": "https",
+									"host": [
+										"cdpapi",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"id",
+										"ef9c7f81-f853-41c3-babc-39a05fe45f3c"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete User by ID",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://cdpapi.herokuapp.com/api/v1/users/id/61c50c20-9ac9-4f35-8ca8-ce29ac78aeea",
+									"protocol": "https",
+									"host": [
+										"cdpapi",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"id",
+										"61c50c20-9ac9-4f35-8ca8-ce29ac78aeea"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Local",
+			"item": [
+				{
+					"name": "Hello",
+					"item": [
+						{
+							"name": "Hello API",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:5000/api/v1/hello",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"v1",
+										"hello"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "Create User",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"João de Brito Neto\",\n    \"email\": \"joaobrito@gmail.com\",\n    \"phone\": \"11999887766\",\n    \"cpf\": \"77788899955\",\n    \"birth_date\": \"12/05/1987\",\n    \"brand\": \"heineiken\",\n    \"source\": \"rock_in_rio\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/v1/users",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"v1",
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all Users",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/v1/users",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"v1",
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get User by ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/v1/users/id/61c50c20-9ac9-4f35-8ca8-ce29ac78aeea",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"id",
+										"61c50c20-9ac9-4f35-8ca8-ce29ac78aeea"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update User by ID",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Joice Denise Dutra 22\",\n    \"email\": \"joice22@gmail.com\",\n    \"phone\": \"11999887762\",\n    \"cpf\": \"77788899952\",\n    \"birth_date\": \"12/05/1981\",\n    \"brand\": \"heineiken\",\n    \"source\": \"rock_in_rio\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/v1/users/id/71c91618-2067-4c34-a7ca-e0d4d33101d2",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"id",
+										"71c91618-2067-4c34-a7ca-e0d4d33101d2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete User by ID",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/v1/users/id/d868c1b8-38b6-4651-a95b-6f4f7c792154",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"id",
+										"d868c1b8-38b6-4651-a95b-6f4f7c792154"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

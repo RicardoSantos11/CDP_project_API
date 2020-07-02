@@ -50,6 +50,7 @@ The project structure is based on the official [Scaling your project](https://fl
         └── __init__.py
     └── __init__.py
 ├── .gitignore
+├── CDP.postman_collection.json
 ├── config.py
 ├── Procfile
 ├── README.md
@@ -70,6 +71,7 @@ The project structure is based on the official [Scaling your project](https://fl
 * `api/__init__.py` - The Flask Application factory (`create_app()`) and it's configuration are done here. Your [Blueprints](https://flask-restplus.readthedocs.io/en/stable/scaling.html#use-with-blueprints) are registered here.
 * `api/v1/__init__.py` - The Flask RESTPlus API is created here with the versioned Blueprint (e.g `v1`). Your [Namespaces](https://flask-restplus.readthedocs.io/en/stable/scaling.html#multiple-namespaces) are registered here.
 * `.gitignore` - Lists files and directories which should not be added to git repository.
+* `CDP.postman_collection.json` - File to import in Postman.
 * `config.py` - Config file for envs, global config vars and so on.
 * `Procfile` - Configuration of gunicorn (for deploy on Heroku).
 * `README.md` - Instructions and informations of this API.
