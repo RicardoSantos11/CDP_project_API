@@ -58,3 +58,16 @@ class UserId(Resource):
         Deletes user by ID
         """
         return Users.delete_user(id)
+
+    @api.expect(user)
+    @api.doc(responses={
+        204: 'No content',
+        400: 'Input payload validation failed',
+        422: 'No user updated',
+        500: 'Internal Server Error'
+    }, params={'id': 'user ID'})
+    def put(self, id):
+        """
+        Updates the user
+        """
+        return Users.update_user(id, api.payload)

@@ -53,9 +53,20 @@ class Users:
             return f"An Error Ocurred: {e}"
 
     @classmethod
-    def delete_user(cls, id):
-        users_ref = set_users()
+    def update_user(cls, id, data):
+        user_ref = set_users()
 
-        if users_ref.delete_one({'_id': id}).deleted_count:
+        if not cls.get_user(id):
+            abort(404, 'User not found')
+
+        if user_ref.update_one({'_id': id}, {'$set': data}):
+            return '', 204
+        abort(422, 'No user updated')
+
+    @classmethod
+    def delete_user(cls, id):
+        user_ref = set_users()
+
+        if user_ref.delete_one({'_id': id}).deleted_count:
             return '', 204
         abort(404, 'User not found')
