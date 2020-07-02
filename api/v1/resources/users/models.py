@@ -1,4 +1,6 @@
+import uuid
 from flask import current_app
+from flask_restplus import abort
 
 
 def set_users():
@@ -32,4 +34,21 @@ class Users:
 
     @staticmethod
     def insert_user(user):
-        pass
+        user_ref = set_users()
+
+        try:
+            user_json = {
+                "_id": str(uuid.uuid4()),
+                "name": user.get('name'),
+                "email": user.get('email'),
+                "phone": user.get('phone'),
+                "cpf": user.get('cpf'),
+                "birth_date": user.get('birth_date'),
+                "brand": user.get('brand'),
+                "source": user.get('source')
+            }
+            if not user_ref.insert_one(user_json).inserted_id:
+                abort(422, 'Cannot create user')
+            return user_json
+        except Exception as e:
+            return f"An Error Ocurred: {e}"

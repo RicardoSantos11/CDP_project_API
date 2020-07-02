@@ -16,6 +16,19 @@ class UserList(Resource):
         """
         return Users.get_all_users()
 
+    @api.marshal_with(user, code=201)
+    @api.expect(user)
+    @api.doc(responses={
+        400: 'Input payload validation failed',
+        422: 'Cannot create user',
+        500: 'Internal Server Error'
+    })
+    def post(self):
+        """
+        Creates a new user
+        """
+        return Users.insert_user(api.payload), 201
+
 
 @api.route('/id/<string:id>')
 class UserId(Resource):
