@@ -1,5 +1,7 @@
 import datetime
+import json
 import uuid
+from bson.json_util import dumps
 from flask import current_app
 from flask_restplus import abort
 from validate_email import validate_email
@@ -87,22 +89,18 @@ class Users:
 
         user_ref = set_users()
         try:
-            user_json = {
-                "_id": str(uuid.uuid4()),
-                "name": user.get('name'),
-                "email": user.get('email'),
-                "mobile_phone": user.get('mobile_phone'),
-                "cpf": Cpf.remove_mask(user.get('cpf')),
-                "birth_date": date_in(user.get('birth_date')),
-                "brand": user.get('brand'),
-                "source": user.get('source'),
-                "privacy_consent": user.get('privacy_consent'),
-                "media_consent": user.get('media_consent'),
-                "reg_date": datetime.datetime.now()
-            }
-            if not user_ref.insert_one(user_json).inserted_id:
+            user['_id'] = str(uuid.uuid4())
+            user['cpf'] = Cpf.remove_mask(user.get('cpf'))
+            user['birth_date'] = date_in(user.get('birth_date'))
+            user['reg_date'] = datetime.datetime.now()
+
+            if not user_ref.insert_one(user).inserted_id:
                 abort(422, 'Cannot create user')
-            return user_json
+
+            user.pop('birth_date')
+            user.pop('reg_date')
+
+            return json.loads(dumps(user))
         except Exception as e:
             return f"An Error Ocurred: {e}"
 
