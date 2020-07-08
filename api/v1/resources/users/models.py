@@ -1,12 +1,60 @@
+import datetime
 import uuid
 from flask import current_app
 from flask_restplus import abort
+from validate_email import validate_email
+
+from api.helpers.cpf import Cpf
 
 
 def set_users():
     db = current_app.config.get('DB', None)
     users_ref = db['users']
     return users_ref
+
+
+def under_age(date):
+    is_under_age = False
+    year = datetime.datetime.now().date().year
+    year_user = datetime.datetime.strptime(date, '%d/%m/%Y').year
+    if (year - year_user) < 18:
+        is_under_age = True
+    return is_under_age
+
+
+def basic_validations(user):
+    error = None
+    if not ('name' in user) or len(user.get('name')) < 3:
+        error = 'Field name is missing or invalid.'
+    elif not ('email' in user):
+        error = 'Field email is missing.'
+    elif not validate_email(email_address=user.get('email'), check_mx=False):
+        error = 'Invalid email.'
+    elif not ('mobile_phone' in user) or len(user.get('mobile_phone')) < 9:
+        error = 'Field mobile_phone is missing or invalid.'
+    elif not ('birth_date' in user) or len(user.get('birth_date')) < 8:
+        error = 'Field birdth_date is missing or invalid.'
+    elif under_age(user.get('birth_date')):
+        error = 'User under age not allowed.'
+    elif not ('source' in user) or len(user.get('source')) < 3:
+        error = 'Field source is missing or invalid.'
+    elif not ('privacy_consent' in user):
+        error = 'Field privacy_consent is missing.'
+    elif not user.get('privacy_consent') == True: # If necessary be TRUE
+        error = 'User did not grant permission.'
+    elif not ('media_consent' in user):
+        error = 'Field media_consent is missing.'
+    elif not ('cpf' in user):
+        error = 'Field cpf is missing.'
+    elif not Cpf.validate(Cpf.remove_mask(user.get('cpf'))):
+        error = 'Invalid CPF.'
+    return error
+
+
+def date_in(date):
+    date_str = date + ' 00:00:00'
+    date_f = datetime.datetime.strptime(date_str, '%d/%m/%Y %H:%M:%S')
+    return date_f
 
 
 class Users:
@@ -33,18 +81,24 @@ class Users:
 
     @staticmethod
     def insert_user(user):
-        user_ref = set_users()
+        error = basic_validations(user)
+        if error:
+            abort(422, error)
 
+        user_ref = set_users()
         try:
             user_json = {
                 "_id": str(uuid.uuid4()),
                 "name": user.get('name'),
                 "email": user.get('email'),
-                "phone": user.get('phone'),
-                "cpf": user.get('cpf'),
-                "birth_date": user.get('birth_date'),
+                "mobile_phone": user.get('mobile_phone'),
+                "cpf": Cpf.remove_mask(user.get('cpf')),
+                "birth_date": date_in(user.get('birth_date')),
                 "brand": user.get('brand'),
-                "source": user.get('source')
+                "source": user.get('source'),
+                "privacy_consent": user.get('privacy_consent'),
+                "media_consent": user.get('media_consent'),
+                "reg_date": datetime.datetime.now()
             }
             if not user_ref.insert_one(user_json).inserted_id:
                 abort(422, 'Cannot create user')
