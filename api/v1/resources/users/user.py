@@ -16,8 +16,6 @@ class UserList(Resource):
         """
         return Users.get_all_users()
 
-    @api.marshal_with(user, code=201)
-    @api.expect(user)
     @api.doc(responses={
         400: 'Input payload validation failed',
         422: 'Cannot create user',
