@@ -36,6 +36,9 @@ The project structure is based on the official [Scaling your project](https://fl
 ```
 .
 ├── api
+    └── helpers
+        ├── __init__.py
+        └── cpf.py
     └── v1
         └── resources
             └── hello
@@ -63,6 +66,7 @@ The project structure is based on the official [Scaling your project](https://fl
 ### Folders
 
 * `api` - All the RESTful API implementation is here.
+* `app/helpers` - Useful function/class helpers for all modules.
 * `api/v1` - Resource agroupment for all `v1` [Namespaces](https://flask-restplus.readthedocs.io/en/stable/scaling.html#multiple-namespaces).
 * `api/v1/resources` - All `v1` resources are implemented here.
 
