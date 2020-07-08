@@ -1,6 +1,40 @@
 import os
 import sys
+import logging
+from logging.config import dictConfig
 from pymongo import MongoClient
+
+
+logger = logging.getLogger(__name__)
+
+dictConfig({
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "simple": {
+            "format": "[%(levelname)s] - [%(asctime)s] - %(name)s - %(message)s"
+        }
+    },
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "level": "DEBUG",
+            "formatter": "simple",
+        }
+    },
+    "loggers": {
+        "werkzeug": {
+            "level": "INFO",
+            "handlers": ["console"],
+            "propagate": False
+        }
+    },
+    "root": {
+        "level": "DEBUG",
+        "handlers": ["console"]
+    }
+})
+
 
 class BaseConfig:
 
@@ -17,6 +51,9 @@ class BaseConfig:
         # TODO: For some unknown reason, it is not recognizing the environment variable.
         # DB = os.getenv('DB_MONGO')
         DB = client['CDP_project']
+    except KeyError as key:
+        logger.critical(f'{key} env var is missing !')
+        sys.exit()
     except Exception as e:
         print(e)
         sys.exit()
