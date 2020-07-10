@@ -7,6 +7,7 @@ from flask_restplus import abort
 from validate_email import validate_email
 
 from api.helpers.cpf import Cpf
+from api.helpers.cep import Cep
 
 
 def set_users():
@@ -50,9 +51,9 @@ def basic_validations(user):
         error = 'User did not grant permission.'
     elif not ('media_consent' in user):
         error = 'Field media_consent is missing.'
-    elif ('cpf' in user): # This information is optional
-        if not Cpf.validate(Cpf.format(user.get('cpf'))): # Is necessary come with MASK (xxx.xxx.xxx-xx)
-            error = 'Invalid CPF.'
+    # This information is optional / Is necessary come with MASK (xxx.xxx.xxx-xx)
+    elif ('cpf' in user) and (not Cpf.validate(Cpf.format(user.get('cpf')))):
+        error = 'Invalid CPF.'
     return error
 
 
