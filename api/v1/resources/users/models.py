@@ -42,14 +42,13 @@ def basic_validations(user):
         error = 'Field source is missing or invalid.'
     elif not ('privacy_consent' in user):
         error = 'Field privacy_consent is missing.'
-    elif not user.get('privacy_consent') == True: # If necessary be TRUE
+    elif not user.get('privacy_consent') == True: # Is necessary be TRUE
         error = 'User did not grant permission.'
     elif not ('media_consent' in user):
         error = 'Field media_consent is missing.'
-    elif not ('cpf' in user):
-        error = 'Field cpf is missing.'
-    elif not Cpf.validate(Cpf.remove_mask(user.get('cpf'))):
-        error = 'Invalid CPF.'
+    elif ('cpf' in user): # This information is optional
+        if not Cpf.validate(Cpf.format(user.get('cpf'))): # Is necessary come with MASK (xxx.xxx.xxx-xx)
+            error = 'Invalid CPF.'
     return error
 
 
