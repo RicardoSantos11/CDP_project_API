@@ -40,8 +40,10 @@ def basic_validations(user):
         error = 'Field birdth_date is missing or invalid.'
     elif under_age(user.get('birth_date')):
         error = 'User under age not allowed.'
-    elif not ('source' in user) or len(user.get('source')) < 3:
-        error = 'Field source is missing or invalid.'
+    elif not ('source_title' in user) or len(user.get('source_title')) < 3:
+        error = 'Field source_title is missing or invalid.'
+    elif not ('source_category' in user) or len(user.get('source_category')) < 3:
+        error = 'Field source_category is missing or invalid.'
     elif not ('privacy_consent' in user):
         error = 'Field privacy_consent is missing.'
     elif not user.get('privacy_consent') == True: # Is necessary be TRUE
