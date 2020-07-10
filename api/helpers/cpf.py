@@ -2,36 +2,42 @@ class Cpf:
 
     def __init__(self):
         """
-        Class to interact with CPF numbers
+        'CLASS' to interact and validate a brazilian CPF
         """
         pass
 
     @staticmethod
     def remove_mask(cpf):
         """
-        Remove the mask from a cpf if it exists
+        Remove the mask from a CPF if it exists
         """
-        cpf_wm = cpf.translate ({ord(c): "" for c in ".-"})
-        return cpf_wm
+        return cpf.translate ({ord(c): "" for c in ".-"})
+
+    @staticmethod
+    def input_mask(cpf):
+        """
+        Input mask a CPF
+        """
+        return "%s.%s.%s-%s" % (cpf[0:3], cpf[3:6], cpf[6:9], cpf[9:11])
 
     @staticmethod
     def format(cpf, use_mask=False):
         """
         Method that formats a brazilian CPF
 
-        :param use_mask: Define if cpf use MASK or not
+        :param use_mask: Define if CPF use MASK or not
 
         Tests:
         print Cpf.format('912.890.377-36')
         91289037736
 
-        Tests:
+        Tests (before call this function, you need ensure that "len(CPF) == 11"):
         print Cpf.format('91289037736', use_mask=True)
         912.890.377-36
         """
         if use_mask:
-            return "%s.%s.%s-%s" % (cpf[0:3], cpf[3:6], cpf[6:9], cpf[9:11])
-        return "%s%s%s%s" % (cpf[0:3], cpf[4:7], cpf[8:11], cpf[12:14])
+            return Cpf.input_mask(cpf)
+        return Cpf.remove_mask(cpf)
 
     @staticmethod
     def validate(cpf):
@@ -43,34 +49,29 @@ class Cpf:
         print Cpf.validate('91289037731')
         False
         """
-        cpf_invalidos = [11 * str(i) for i in range(10)]
-        if cpf in cpf_invalidos:
-            return False
+        if len(cpf) == 11:
+            cpf_invalidos = [11 * str(i) for i in range(10)]
+            if cpf in cpf_invalidos:
+                return False
 
-        if not cpf.isdigit():
-            """Verifica se o CPF contem pontos e hifens"""
-            cpf = cpf.replace(".", "")
-            cpf = cpf.replace("-", "")
+            if not cpf.isdigit():
+                """Checks for special characters"""
+                cpf = Cpf.remove_mask(cpf)
 
-        if len(cpf) < 11:
-            """ Verifica se o CPF tem 11 digitos """
-            return False
+            """Checking CPF"""
+            selfcpf = [int(x) for x in cpf]
 
-        if len(cpf) > 11:
-            """ CPF tem que ter 11 digitos """
-            return False
+            cpf = selfcpf[:9]
 
-        selfcpf = [int(x) for x in cpf]
+            while len(cpf) < 11:
+                r = sum([(len(cpf) + 1 - i) * v for i, v in [(x, cpf[x]) for x in range(len(cpf))]]) % 11
 
-        cpf = selfcpf[:9]
+                if r > 1:
+                    f = 11 - r
+                else:
+                    f = 0
+                cpf.append(f)
 
-        while len(cpf) < 11:
-            r = sum([(len(cpf) + 1 - i) * v for i, v in [(x, cpf[x]) for x in range(len(cpf))]]) % 11
+            return bool(cpf == selfcpf)
 
-            if r > 1:
-                f = 11 - r
-            else:
-                f = 0
-            cpf.append(f)
-
-        return bool(cpf == selfcpf)
+        return False
