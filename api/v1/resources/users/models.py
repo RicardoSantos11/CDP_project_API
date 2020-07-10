@@ -28,6 +28,8 @@ def basic_validations(user):
     error = None
     if not ('name' in user) or len(user.get('name')) < 3:
         error = 'Field name is missing or invalid.'
+    elif not ('surname' in user) or len(user.get('surname')) < 3:
+        error = 'Field surname is missing or invalid.'
     elif not ('email' in user):
         error = 'Field email is missing.'
     elif not validate_email(email_address=user.get('email'), check_mx=False):
