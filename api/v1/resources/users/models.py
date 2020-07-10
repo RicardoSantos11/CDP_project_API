@@ -54,6 +54,9 @@ def basic_validations(user):
     # This information is optional / Is necessary come with MASK (xxx.xxx.xxx-xx)
     elif ('cpf' in user) and (not Cpf.validate(Cpf.format(user.get('cpf')))):
         error = 'Invalid CPF.'
+    # Is necessary come with MASK (xxxxx-xxx)
+    elif ('zipcode' in user) and (not Cep.validate(Cep.format(user.get('cep')))):
+        error = 'Invalid CEP.'
     return error
 
 
