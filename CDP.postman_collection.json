@@ -224,7 +224,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"name\": \"Carlos Ricardo roberto\",\n    \"email\": \"joaobrito@gmail.com\",\n    \"mobile_phone\": \"11999887766\",\n    \"cpf\": \"11864916800\",\n    \"birth_date\": \"12/05/1987\",\n    \"brand\": \"heineiken\",\n    \"source\": \"rock_in_rio\",\n    \"privacy_consent\": true,\n    \"media_consent\": false\n}",
+									"raw": "{\n    \"name\": \"Carlos\",\n    \"surname\": \"Santos\",\n    \"email\": \"joaobrito@gmail.com\",\n    \"mobile_phone\": \"11999887766\",\n    \"zipcode\": \"03639-040\",\n    \"birth_date\": \"12/05/1987\",\n    \"brand\": \"heineiken\",\n    \"source\": \"rock_in_rio\",\n    \"source_title\": \"source_title\",\n    \"source_category\": \"source_category\",\n    \"privacy_consent\": true,\n    \"media_consent\": false\n}",
 									"options": {
 										"raw": {
 											"language": "json"
