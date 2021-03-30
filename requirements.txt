@@ -42,7 +42,7 @@ prompt-toolkit==3.0.5
 ptyprocess==0.6.0
 py3-validate-email==0.2.9
 pycparser==2.20
-Pygments==2.6.1
+Pygments==2.7.4
 pymongo==3.10.1
 pyOpenSSL==19.1.0
 pyparsing==2.4.6
